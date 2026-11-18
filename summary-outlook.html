@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitHub Copilot for Agentic Software Development</title>
+  </head>
+  <body style="margin:0; padding:24px; background-color:#f3f4f6; color:#24292f; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:1.55;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+      <tr>
+        <td align="center">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="680" style="width:100%; max-width:680px; border-collapse:collapse; background-color:#ffffff;">
+            <tr>
+              <td style="padding:32px 36px 12px 36px;">
+                <p style="margin:0 0 8px 0; color:#57606a; font-size:13px; font-weight:bold; letter-spacing:1px; text-transform:uppercase;">A practical brief for a semi-technical audience</p>
+                <h1 style="margin:0; color:#0969da; font-size:28px; line-height:1.2;">GitHub Copilot for Agentic Software Development</h1>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 36px 16px 36px;">
+                <p style="margin:0;"><strong>The core idea:</strong> GitHub Copilot can help a team move from a software idea to a reviewable, tested change. It can inspect a codebase, help define requirements, draft a plan, implement bounded tasks, coordinate other agents, and explain failed checks. It does not replace engineering judgment: people approve the plan, inspect the changes, and use tests and CI—not an agent's assurance—to decide whether the work is correct.</p>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:8px 36px;">
+                <h2 style="margin:0 0 8px 0; color:#24292f; font-size:21px;">The lab day in one example</h2>
+                <p style="margin:0 0 12px 0;">The workshop uses KosKo, a fictional storefront, to add product sorting by price. The feature must work with existing search and category filters without breaking the cart or checkout. That small example demonstrates the full development loop:</p>
+                <ol style="margin:0; padding-left:24px;">
+                  <li style="margin:0 0 8px 0;"><strong>Specify before editing.</strong> In the Copilot App's <strong>Interactive</strong> mode, ask Copilot to inspect the existing code and help define observable behavior. Resolve details such as default order, equal-price behavior, filter interaction, reset behavior, accessibility, and errors.</li>
+                  <li style="margin:0 0 8px 0;"><strong>Plan for review.</strong> In <strong>Plan</strong> mode, turn the agreed behavior into a reviewable specification and bounded tasks. The workshop separates a shared sorting contract, API work, UI work, and integration, with dependencies, owned files, prohibited areas, and focused checks. Review and revise the Plan before implementation.</li>
+                  <li style="margin:0 0 8px 0;"><strong>Implement with appropriate autonomy.</strong> Use <strong>Interactive</strong> for closer steering or <strong>Autopilot</strong> for clear, approved tasks. The built-in <code>/orchestrate</code> skill can coordinate independent tasks in isolated sessions or worktrees. Keep file ownership separate and review each agent's actual changes.</li>
+                  <li style="margin:0 0 8px 0;"><strong>Integrate and verify.</strong> Run focused tests, the full check, and browser checks against the shopper journey. Verify a deployment separately if one is in scope; a local preview is not proof of deployment.</li>
+                  <li style="margin:0;"><strong>Delegate and automate carefully.</strong> A cloud agent can take a narrow GitHub issue and return a change for review. GitHub Agentic Workflows can analyze a failed CI run and suggest regression tests. In the lab, deterministic CI still decides pass or fail; the workflow is limited to explaining evidence and proposing next steps.</li>
+                </ol>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 36px 8px 36px;">
+                <h2 style="margin:0 0 10px 0; color:#24292f; font-size:21px;">Copilot capabilities at a glance</h2>
+                <table cellpadding="8" cellspacing="0" border="0" width="100%" style="border-collapse:collapse; font-size:14px;">
+                  <tr style="background-color:#f6f8fa;">
+                    <th align="left" style="border:1px solid #d0d7de; color:#24292f;">Capability</th>
+                    <th align="left" style="border:1px solid #d0d7de; color:#24292f;">Useful for</th>
+                    <th align="left" style="border:1px solid #d0d7de; color:#24292f;">Human responsibility</th>
+                  </tr>
+                  <tr>
+                    <td style="border:1px solid #d0d7de;"><strong>Interactive mode</strong></td>
+                    <td style="border:1px solid #d0d7de;">Exploring code, clarifying requirements, and iterating with guidance.</td>
+                    <td style="border:1px solid #d0d7de;">Confirm expected behavior and keep changes in scope.</td>
+                  </tr>
+                  <tr style="background-color:#f6f8fa;">
+                    <td style="border:1px solid #d0d7de;"><strong>Plan mode and canvas</strong></td>
+                    <td style="border:1px solid #d0d7de;">Making a specification and task breakdown visible before code changes.</td>
+                    <td style="border:1px solid #d0d7de;">Check acceptance criteria, dependencies, ownership, and risks.</td>
+                  </tr>
+                  <tr>
+                    <td style="border:1px solid #d0d7de;"><strong>Autopilot</strong></td>
+                    <td style="border:1px solid #d0d7de;">Executing clear, approved work with less step-by-step direction.</td>
+                    <td style="border:1px solid #d0d7de;">Review the diff and evidence. Autonomy does not grant extra permissions.</td>
+                  </tr>
+                  <tr style="background-color:#f6f8fa;">
+                    <td style="border:1px solid #d0d7de;"><strong>Copilot Fusion</strong></td>
+                    <td style="border:1px solid #d0d7de;">App model orchestration, which may use one model or several.</td>
+                    <td style="border:1px solid #d0d7de;">Treat availability and output quality as variable; this workshop is not a benchmark.</td>
+                  </tr>
+                  <tr>
+                    <td style="border:1px solid #d0d7de;"><strong>Orchestration and Fleet</strong></td>
+                    <td style="border:1px solid #d0d7de;">Coordinating multiple agents on independent work.</td>
+                    <td style="border:1px solid #d0d7de;">Keep work isolated, ownership non-overlapping, and integration reviewed.</td>
+                  </tr>
+                  <tr style="background-color:#f6f8fa;">
+                    <td style="border:1px solid #d0d7de;"><strong>Cloud agent</strong></td>
+                    <td style="border:1px solid #d0d7de;">Taking a bounded task from a GitHub issue and returning a reviewable change.</td>
+                    <td style="border:1px solid #d0d7de;">Review the pull request, requested revisions, and test results.</td>
+                  </tr>
+                  <tr>
+                    <td style="border:1px solid #d0d7de;"><strong>GitHub Agentic Workflows</strong></td>
+                    <td style="border:1px solid #d0d7de;">Responding to workflow events, such as explaining a failed test.</td>
+                    <td style="border:1px solid #d0d7de;">Verify explanations against logs; treat suggestions as hypotheses. CI remains authoritative.</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 36px 8px 36px;">
+                <h2 style="margin:0 0 8px 0; color:#24292f; font-size:21px;">Guardrails for dependable results</h2>
+                <ul style="margin:0; padding-left:22px;">
+                  <li style="margin:0 0 7px 0;"><strong>Bound every task:</strong> state the goal, acceptance criteria, allowed and prohibited files, and checks to run.</li>
+                  <li style="margin:0 0 7px 0;"><strong>Review before acting:</strong> inspect the Plan before implementation and the actual diff before integration or merge.</li>
+                  <li style="margin:0 0 7px 0;"><strong>Separate suggestion from evidence:</strong> agent explanations are not proof. Use test output, CI, review, and deployment checks tied to the change.</li>
+                  <li style="margin:0 0 7px 0;"><strong>Preserve security controls:</strong> use least-privilege workflow permissions, GitHub OIDC for Azure, protected environments, and required human approvals. Do not add long-lived credentials or bypass checks.</li>
+                  <li style="margin:0 0 7px 0;"><strong>Be transparent about limitations:</strong> account policy, model access, or deployment setup may prevent an exercise. Record unavailable capabilities honestly rather than presenting them as successful.</li>
+                  <li style="margin:0;"><strong>Keep work traceable:</strong> connect issues, plans, pull requests, commits, and exact validation results.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:20px 36px 32px 36px;">
+                <h2 style="margin:0 0 8px 0; color:#24292f; font-size:21px;">Takeaway</h2>
+                <p style="margin:0;">Use Copilot in a <strong>specify &rarr; plan &rarr; implement &rarr; review &rarr; verify</strong> loop. It can reduce the effort of understanding and changing software, while people retain control over scope, permissions, quality decisions, and proof that the result works.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
